@@ -1,5 +1,3 @@
-import math as ma
-
 
 class GENDER:
     MALE = -1
@@ -43,9 +41,10 @@ class RELATIONSHIP:
 
 
 class Person:
-    # i think the ID should be randomly created probably with the random module
+    """ Creates members of  a nuclear family."""
 
     def __init__(self, idp, name, year, gender):
+        # i think the ID should be randomly created probably with the random module
         self.__id = idp
         self.__fullName = name
         self.__gender = gender
@@ -56,7 +55,8 @@ class Person:
         self.__childIds = []
 
     def setMother(self, mother):
-        """ Crates the mother of the person. """
+        """ Crates the mother of the person.
+          The input is an instance of the person object"""
 
         if (mother.getGender() == GENDER.FEMALE
                 and mother.getBirthYear() < self.__birthYear - 10
@@ -68,7 +68,8 @@ class Person:
                   " as mother of " + self.__fullName)
 
     def setFather(self, father):
-        """ Crates the father  of the person. """
+        """ Crates the father  of the person.
+         The input is an instance of the person object """
 
         if (father.getGender() == GENDER.MALE
                 and father.getBirthYear() < self.__birthYear - 10
@@ -79,16 +80,25 @@ class Person:
             print("Error: [Person] Can not set " + father.getName() + \
                   " as father of " + self.__fullName)
 
-    def setCouple(self, couple):
+    def setCouple(self, couple):  # TODO change to fit modern times
+        """ Creates the spouse of person.
+         The input is an instance of the person object.
+         The dictionary 'self.__coupleIds' will contain the ID of the
+         spouse of the person. """
+
         if couple.getGender() + self.__gender == 0 and \
-                ma.fabs(couple.getBirthYear() - self.__birthYear) < 60:
+                abs(couple.getBirthYear() - self.__birthYear) < 60:
             self.__coupleIds.append(couple.getID())
             couple.addCouple(self)
         else:
-            print("Error: [Person] Can not add " + couple.getName() + \
+            print("Error: [Person] Can not add " + couple.getName() +
                   " as a couple of " + self.__fullName)
 
     def addCouple(self, couple):
+        """
+        The dictionary 'self.__coupleIds' will contain contain the ID of the
+         spouse of the person ."""
+
         self.__coupleIds.append(couple.getID())
 
     def addChildren(self, children):
@@ -126,6 +136,3 @@ class Person:
                self.getName() + " (" + \
                str(self.getBirthYear()) + "), " + \
                GENDER.toString(self.getGender())
-
-
-

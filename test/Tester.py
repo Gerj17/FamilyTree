@@ -21,6 +21,7 @@ if __name__ == '__main__':
     family.addPerson(1, "toi", 1994, GENDER.MALE)
     family.addPerson(2, "vo toi", 1994, GENDER.FEMALE)
     family.setCouple(1, 2)
+    print(family.treedict())
 
     family.addPerson(3, "cha toi", 1954, GENDER.MALE)
     family.addPerson(4, "me toi", 1955, GENDER.FEMALE)
@@ -71,10 +72,11 @@ if __name__ == '__main__':
     family.setFather(15, 17)
     family.setMother(16, 17)
 
-    print(family.toString())
+    #print(family.toString())
 
     relationship = family.search(17, 10)
-
+    #print(relationship)
+    print("\n" * 2)
     for i in range(len(relationship)):
         string = family.lookupPerson(relationship[i][0]).toString() \
                  + RELATIONSHIP_NAME[relationship[i][1]]
