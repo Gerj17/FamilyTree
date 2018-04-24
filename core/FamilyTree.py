@@ -63,6 +63,7 @@ class FamilyTree:
             history.append(nodeId)
             print("this is currently history", history)
 
+            # TODO recode this section of the function
             # current person is the interested person
             if nodeId == leafId:
                 print(" nodeId == leafId", nodeId, leafId)
