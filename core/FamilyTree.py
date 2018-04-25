@@ -117,10 +117,18 @@ class FamilyTree:
             # determines if 'nodeId' is the child of the person(s) in the FatherID attribute  '
 
             fatherID = self.__tree[nodeId].getFatherID()
+            motherID = self.__tree[nodeId].getMotherID()
             if fatherID is not None and fatherID not in history:
+                print("the children ", fatherID)
                 Q.append(fatherID)
                 print("the is Q FatherID", Q)
                 backTracer[self.__tree[nodeId].getFatherID()] = (nodeId, RELATIONSHIP.IS_CHILDREN)
+                print('this is backTracer if fatherID --child--', backTracer)
+            elif motherID is not None and fatherID not in history:
+                print("the children ", motherID)
+                Q.append(motherID)
+                print("the is Q MotherID", Q)
+                backTracer[self.__tree[nodeId].getmotherID()] = (nodeId, RELATIONSHIP.IS_CHILDREN)
                 print('this is backTracer if fatherID --child--', backTracer)
 
         # [TODO] after find a path, post process to find the shortest path
