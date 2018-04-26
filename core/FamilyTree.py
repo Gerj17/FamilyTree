@@ -128,8 +128,8 @@ class FamilyTree:
                 print("the children ", motherID)
                 Q.append(motherID)
                 print("the is Q MotherID", Q)
-                backTracer[self.__tree[nodeId].getmotherID()] = (nodeId, RELATIONSHIP.IS_CHILDREN)
-                print('this is backTracer if fatherID --child--', backTracer)
+                backTracer[self.__tree[nodeId].getMotherID()] = (nodeId, RELATIONSHIP.IS_CHILDREN)
+                print('this is backTracer if motherID --child--', backTracer)
 
         # [TODO] after find a path, post process to find the shortest path
 

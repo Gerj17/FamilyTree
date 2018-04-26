@@ -8,8 +8,8 @@ class FamilyTree:
     the person class """
 
     def __init__(self, idf, familyName):
-        self.__idFamily = idf
-        self.__familyName = familyName
+        self.__idFamily = int(idf)
+        self.__familyName = str(familyName)
         self.__tree = {}
 
 
@@ -46,8 +46,8 @@ class FamilyTree:
         rootID = the person who we are looking at (example son)
         leafId = the person we want to know how they're related (example Father )
 
-        Q is the Queue that stores persons to look at.
-        backTracer stores the how persons are related
+        Q = the Queue that stores persons to look at.
+        backTracer = dictionary that stores how persons are related.
         """
 
         if rootId not in self.__tree or leafId not in self.__tree:
@@ -107,7 +107,6 @@ class FamilyTree:
 
             # search in his/her children
             # determines if 'nodeId' is the father or mother of the person(s) in the childrenID attribute  '
-
             for childrenID in self.__tree[nodeId].getChildIDs():
                 if childrenID is not None and childrenID not in history:
                     print("the children ", childrenID)
@@ -124,11 +123,18 @@ class FamilyTree:
             # determines if 'nodeId' is the child of the person(s) in the FatherID attribute  '
 
             fatherID = self.__tree[nodeId].getFatherID()
+            motherID = self.__tree[nodeId].getMothreID()
             if fatherID is not None and fatherID not in history:
                 Q.append(fatherID)
                 print("the is Q FatherID", Q)
-                backTracer[self.__tree[nodeId].getFatherID()] = (nodeId, Person.RELATIONSHIP.IS_CHILDREN)
+                backTracer[fatherID()] = (nodeId, Person.RELATIONSHIP.IS_CHILDREN)
                 print('this is backTracer if fatherID --child--', backTracer)
+
+            elif motherID is not None and motherID not in history:
+                Q.append(motherID)
+                print("the is Q MotherID", Q)
+                backTracer[motherID()] = (nodeId, Person.RELATIONSHIP.IS_CHILDREN)
+                print('this is backTracer if motherID --child--', backTracer)
 
         # [TODO] after find a path, post process to find the shortest path
 
@@ -148,3 +154,11 @@ class FamilyTree:
         if len(listData) == 0:
             listData.append("no person to choose")
         return listData
+
+
+
+
+
+a = FamilyTree(2,"goal")
+
+a.addPerson(1,"cat",1999,)
