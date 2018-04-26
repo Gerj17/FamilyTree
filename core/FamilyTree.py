@@ -1,4 +1,4 @@
-from core.Person import *
+from core.Person import*
 import copy
 
 

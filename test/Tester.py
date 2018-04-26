@@ -16,7 +16,7 @@ RELATIONSHIP_NAME = {
 }
 
 if __name__ == '__main__':
-    family = FamilyTree(1, "gia dinh Cobb")
+    family = FamilyTree(1, "Cobb")
 
     family.addPerson(1, "Braiden Cobb", 1994, GENDER.MALE)
     family.addPerson(2, "Aiyana Cobb", 1994, GENDER.FEMALE)
@@ -51,7 +51,7 @@ if __name__ == '__main__':
     family.setFather(7, 11)
     family.setMother(8, 11)
 
-    family.addPerson(12, "con cua chi cha Cobb", 1990, GENDER.FEMALE)
+    family.addPerson(12, "Dixie Cobb", 1990, GENDER.FEMALE)
     family.addPerson(13, "Immanuel Cobb", 1989, GENDER.MALE)
     family.setFather(10, 12)
     family.setMother(9, 12)
@@ -72,7 +72,7 @@ if __name__ == '__main__':
     family.setFather(15, 17)
     family.setMother(16, 17)
 
-    #print(family.toString())
+    print(family.toString())
 
     relationship = family.search(17, 10)
     #print(relationship)
@@ -81,9 +81,9 @@ if __name__ == '__main__':
         string = family.lookupPerson(relationship[i][0]).toString() \
                  + RELATIONSHIP_NAME[relationship[i][1]]
         if i > 0:
-            print(i)
+            #print(i)
             string += family.lookupPerson(relationship[i - 1][0]).toString()
-            print("--------------",relationship[i - 1])
-            print("--------------",family.lookupPerson(relationship[i ][0]).toString())
+           # print("--------------",relationship[i - 1])
+            #print("--------------",family.lookupPerson(relationship[i ][0]).toString())
 
         print(string)
