@@ -7,7 +7,7 @@ from tkinter import filedialog
 from tkinter import *
 
 from core.FamilyTree import *
-from core.Person import *
+from core.Human import *
 from db.DatabaseManager import *
 from utils.Utils import *
 

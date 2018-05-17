@@ -1,9 +1,9 @@
-from core.Person import*
+from core.Human import*
 import copy
 
 
 class FamilyTree:
-    """ Creates persons in the using the Person class. Stores their ID in the
+    """ Creates persons in the using the Human class. Stores their ID in the
     self.__tree dectionary, the ID is the key and the value is the instance of
     the person class, all all interactions betweeen individuals take place in
     the person class """
@@ -47,7 +47,7 @@ class FamilyTree:
         """
 
         if rootId not in self.__tree or leafId not in self.__tree:
-            print("Error: [FamilyTree] Person is not in family")
+            print("Error: [FamilyTree] Human is not in family")
             return []  # TODO simplify for error message reasons
 
         # perform BFS to find the relationship with 2 persons
@@ -138,14 +138,14 @@ class FamilyTree:
     def toString(self):
         stringData = ""
         for key, person in self.__tree.items():
-            stringData += person.toString() + "\n"
+            stringData += person.getbio() + "\n"
         return stringData
 
     def toListString(self, omitGender=0):
         listData = []
         for key, person in self.__tree.iteritems():
             if person.getGender() != omitGender:
-                listData.append(person.toString() + "\n")
+                listData.append(person.getbio() + "\n")
         if len(listData) == 0:
             listData.append("no person to choose")
         return listData

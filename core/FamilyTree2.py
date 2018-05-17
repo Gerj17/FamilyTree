@@ -1,8 +1,8 @@
-import core.Person as Person
+import core.Human as Human
 import copy
 
 class FamilyTree:
-    """ Creates persons in the using the Person class. Stores their ID in the
+    """ Creates persons in the using the Human class. Stores their ID in the
     self.__tree dectionary, the ID is the key and the value is the instance of
     the person class, all all interactions betweeen individuals take place in
     the person class """
@@ -21,7 +21,7 @@ class FamilyTree:
         return copy.deepcopy(self.__tree[idp])
 
     def addPerson(self, idp, name, year, gender):
-        person = Person.Person(idp, name, year, gender)
+        person = Human.Person(idp, name, year, gender)
         self.__tree[person.getID()] = person
 
     def setFather(self, fatherId, childrenId):
@@ -39,13 +39,13 @@ class FamilyTree:
             return
         self.__tree[person2Id].setCouple(self.__tree[person1Id])
 
-
     def search(self, rootId, leafId):
         """ Finds the relationship between two individuals
         Arguments :
         rootID = the person who we are looking at (example son)
         leafId = the person we want to know how they're related (example Father )
 
+        Q = the Queue that stores persons to look at.
         Q = the Queue that stores persons to look at.
         backTracer = dictionary that stores how persons are related.
         """
@@ -78,7 +78,7 @@ class FamilyTree:
                 print("this is leafId ", leafId)
                 p = backTracer[leafId]
                 print("this is p ", p)
-                relationship = [(leafId, Person.RELATIONSHIP.IS_NULL), p]
+                relationship = [(leafId, Human.RELATIONSHIP.IS_NULL), p]
                 print("this is relationship", relationship)
                 while p[0] != rootId:
                     print("p[0] is,", p[0])
@@ -98,11 +98,11 @@ class FamilyTree:
                     print("the couples ID ", coupleID)
                     Q.append(coupleID)
                     print("the is Q coupleID ,", Q)
-                    if self.__tree[nodeId].getGender() == Person.GENDER.MALE:
-                        backTracer[coupleID] = (nodeId, Person.RELATIONSHIP.IS_HUSBAND)
+                    if self.__tree[nodeId].getGender() == Human.GENDER.MALE:
+                        backTracer[coupleID] = (nodeId, Human.RELATIONSHIP.IS_HUSBAND)
                         print('this is backTracer if coupleID  --husband--', backTracer)
                     else:
-                        backTracer[coupleID] = (nodeId, Person.RELATIONSHIP.IS_WIFE)
+                        backTracer[coupleID] = (nodeId, Human.RELATIONSHIP.IS_WIFE)
                         print('this is backTracer if coupleID  --wife--', backTracer)
 
             # search in his/her children
@@ -112,11 +112,11 @@ class FamilyTree:
                     print("the children ", childrenID)
                     Q.append(childrenID)
                     print("the is Q children ", Q)
-                    if self.__tree[nodeId].getGender() == Person.GENDER.MALE:
-                        backTracer[childrenID] = (nodeId, Person.RELATIONSHIP.IS_FATHER)
+                    if self.__tree[nodeId].getGender() == Human.GENDER.MALE:
+                        backTracer[childrenID] = (nodeId, Human.RELATIONSHIP.IS_FATHER)
                         print('this is backTracer if childrenID --father--', backTracer)
                     else:
-                        backTracer[childrenID] = (nodeId, Person.RELATIONSHIP.IS_MOTHER)
+                        backTracer[childrenID] = (nodeId, Human.RELATIONSHIP.IS_MOTHER)
                         print('this is backTracer if childrenID --mother--', backTracer)
 
             # search in his/her father
@@ -127,13 +127,13 @@ class FamilyTree:
             if fatherID is not None and fatherID not in history:
                 Q.append(fatherID)
                 print("the is Q FatherID", Q)
-                backTracer[fatherID()] = (nodeId, Person.RELATIONSHIP.IS_CHILDREN)
+                backTracer[fatherID()] = (nodeId, Human.RELATIONSHIP.IS_CHILDREN)
                 print('this is backTracer if fatherID --child--', backTracer)
 
             elif motherID is not None and motherID not in history:
                 Q.append(motherID)
                 print("the is Q MotherID", Q)
-                backTracer[motherID()] = (nodeId, Person.RELATIONSHIP.IS_CHILDREN)
+                backTracer[motherID()] = (nodeId, Human.RELATIONSHIP.IS_CHILDREN)
                 print('this is backTracer if motherID --child--', backTracer)
 
         # [TODO] after find a path, post process to find the shortest path
@@ -143,14 +143,14 @@ class FamilyTree:
     def toString(self):
         stringData = ""
         for key, person in self.__tree.items():
-            stringData += person.toString() + "\n"
+            stringData += person.getbio() + "\n"
         return stringData
 
     def toListString(self, omitGender=0):
         listData = []
         for key, person in self.__tree.iteritems():
             if person.getGender() != omitGender:
-                listData.append(person.toString() + "\n")
+                listData.append(person.getbio() + "\n")
         if len(listData) == 0:
             listData.append("no person to choose")
         return listData
