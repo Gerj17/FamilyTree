@@ -61,24 +61,23 @@ class Person:
           The input is an instance of the person object"""
 
         if (mother.getGender() == GENDER.FEMALE
-                and (mother.getBirthYear() - self.__birthYear) < 60 and (
-                        mother.getBirthYear() - self.__birthYear) > 12):
+                and self.__birthYear - 10 > mother.getBirthYear() > self.__birthYear - 60):
 
             self.__motherId = mother.getID()
             mother.addChildren(self)
         else:
             Error_ms = 'Error: [Human:Person] Can not set ' + mother.getName() + ' as mother of ' + self.__fullName + \
                        'because she '
-            if mother.getBirthYear() - self.__birthYear < 12:
+            if self.__birthYear - 10 < mother.getBirthYear():
                 print(Error_ms + 'can\'t have ', self.__fullName, 'at such a young age')
-            if mother.getBirthYear() - self.__birthYear > 60:
+            if mother.getBirthYear() < self.__birthYear - 60:
                 print(Error_ms + 'can\'t have ', self.__fullName, 'at such an old age')
 
     def setFather(self, father):
         """ Crates the father  of the person.
          The input is an instance of the person object """
 
-        if father.getGender() == GENDER.MALE and father.getBirthYear() - self.__birthYear > 13:
+        if father.getGender() == GENDER.MALE and self.__birthYear - 10 > father.getBirthYear():
             self.__fatherId = father.getID()
             father.addChildren(self)
         else:
