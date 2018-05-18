@@ -1,4 +1,3 @@
-
 class GENDER:
     """ Determine if a person instance is male or female."""
     MALE = -1
@@ -69,11 +68,9 @@ class Person:
             print("Error: [Human] Can not set " + mother.getName() +
                   " as mother of " + self.__fullName)
             if mother.getBirthYear() > self.__birthYear - 10:
-                print(mother.getName(),"can't have ", self.__fullName,"at such a young age")
+                print(mother.getName(), "can't have ", self.__fullName, "at such a young age")
             if mother.getBirthYear() < self.__birthYear - 60:
-                print(mother.getName(),"can't have ", self.__fullName,"at such an old age")
-
-
+                print(mother.getName(), "can't have ", self.__fullName, "at such an old age")
 
     def setFather(self, father):
         """ Crates the father  of the person.
