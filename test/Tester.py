@@ -6,6 +6,7 @@ sys.path.insert(0, os.path.abspath(os.getcwd() + "../../"))
 from core.FamilyTree import *
 from core.Human import *
 
+
 RELATIONSHIP_NAME = {
     RELATIONSHIP.IS_NULL: " [is the current person] ",
     RELATIONSHIP.IS_WIFE: " [is the wife of] ",
