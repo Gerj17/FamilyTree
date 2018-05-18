@@ -17,11 +17,17 @@ class GENDER:
     @staticmethod
     def fromString(gender):
         """" Takes a string and return the integer represent male of female."""
-
-        if gender.lower() == "male" or "m":
-            return GENDER.MALE
-        elif gender.lower() == "female" or "f":
+        # TODO Find a way to fix this BS
+        if gender.lower() == "female":
             return GENDER.FEMALE
+
+        if gender.lower() == "f":
+            return GENDER.FEMALE
+
+        if gender.lower() == "male":
+            return GENDER.MALE
+        if gender.lower() == "m":
+            return GENDER.MALE
         else:
             print("This is not a gender")
 
