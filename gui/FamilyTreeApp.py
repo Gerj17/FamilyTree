@@ -148,7 +148,7 @@ class FamilyTreeApp(Frame):
 			# read input data
 			name = inputName.get()
 			year = int(inputYear.get())
-			gender = GENDER.fromString(genderChoiceVar.get())
+			gender = Gender.from_string(genderChoiceVar.get())
 			fatherId = Utils.cropIndex(fatherChoiceVar.get())
 			motherId = Utils.cropIndex(motherChoiceVar.get())
 			coupleId = Utils.cropIndex(coupleChoiceVar.get())
@@ -157,15 +157,15 @@ class FamilyTreeApp(Frame):
 				name, year, gender, fatherId, motherId)
 			currentPersonId = self.database.getCurrentId()
 			if coupleId > 0:
-				if gender == GENDER.MALE:
+				if gender == Gender.MALE:
 					self.database.storeCouple(currentPersonId, coupleId)
 				else:
 					self.database.storeCouple(currentPersonId, coupleId)
 			person = Person(currentPersonId, name, year, gender)
-			self.currentFamily.addPerson(person)
-			self.currentFamily.setFather(fatherId, currentPersonId)
-			self.currentFamily.setMother(motherId, currentPersonId)
-			self.currentFamily.setCouple(coupleId, currentPersonId)
+			self.currentFamily.add_person(person)
+			self.currentFamily.set_father(fatherId, currentPersonId)
+			self.currentFamily.set_mother(motherId, currentPersonId)
+			self.currentFamily.set_couple(coupleId, currentPersonId)
 			popup.destroy()
 
 		def onClickCancel():
@@ -180,10 +180,10 @@ class FamilyTreeApp(Frame):
 		# input name
 		inputName = Entry(popup, width=30)
 		inputName.grid(row=0, column=1)
-		# year label
+		# b_year label
 		yearLabel = Label(popup, width=20, text="Year of birth:")
 		yearLabel.grid(row=1, column=0)
-		# input year
+		# input b_year
 		inputYear = Entry(popup, width=30)
 		inputYear.grid(row=1, column=1)
 		# gender label
@@ -199,7 +199,7 @@ class FamilyTreeApp(Frame):
 		fatherLabel = Label(popup, width=20, text="Father:")
 		fatherLabel.grid(row=3, column=0)
 		# father menu choice
-		fatherChoice = self.currentFamily.toListString(omitGender=GENDER.FEMALE)
+		fatherChoice = self.currentFamily.toListString(omitGender=Gender.FEMALE)
 		fatherChoiceVar = StringVar(popup, value="Choose father")
 		fatherBox = OptionMenu(popup, fatherChoiceVar, *fatherChoice)
 		fatherBox.config(width=25)
@@ -208,7 +208,7 @@ class FamilyTreeApp(Frame):
 		motherLabel = Label(popup, width=20, text="Mother:")
 		motherLabel.grid(row=4, column=0)
 		# mother menu choice
-		motherChoice =  self.currentFamily.toListString(omitGender=GENDER.MALE)
+		motherChoice =  self.currentFamily.toListString(omitGender=Gender.MALE)
 		motherChoiceVar = StringVar(popup, value="Choose mother")
 		motherBox = OptionMenu(popup, motherChoiceVar, *motherChoice)
 		motherBox.config(width=25)
